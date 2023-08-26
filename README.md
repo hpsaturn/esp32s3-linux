@@ -1,7 +1,7 @@
 
 # ESP32 S3 Linux - Docker builder 
 
-Dockerfile ported by Adafruif from the work of [@jcmvbkbc](https://gist.github.com/jcmvbkbc/316e6da728021c8ff670a24e674a35e6)
+Dockerfile ported by Adafruit from the work of [@jcmvbkbc](https://gist.github.com/jcmvbkbc/316e6da728021c8ff670a24e674a35e6)
 
 ## Build
 
