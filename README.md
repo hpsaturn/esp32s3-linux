@@ -13,6 +13,10 @@ Please follow the next steps.
 docker build -t esp32-s3_linux .
 ```
 
+This step takes around ~35 minutes and needs ~20Gb
+
+![ESP32S3 Linux image build](screenshots/docker_build.jpg)
+
 2. Run a container in a terminal
 
 ```bash
@@ -46,3 +50,12 @@ parttool.py write_partition --partition-name rootfs --input rootfs.cramfs
 ```
 
 Alternative following this [Adafruit guide](https://learn.adafruit.com/docker-esp32-s3-linux/docker-esp32-s3-linux-image).
+
+# Linux boot
+
+
+![ESP32 S3 TTGO T7](https://user-images.githubusercontent.com/423856/249864617-08cf71ac-8773-4c3b-b5a3-d8912b5b9c05.jpg)
+
+
+Video:  
+![ESP32S3 Linux boot](https://user-images.githubusercontent.com/423856/249861308-74ca4fc8-d0ab-4cc3-9166-cf66c65c70d8.mp4)
