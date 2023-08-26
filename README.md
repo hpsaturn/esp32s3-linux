@@ -5,7 +5,7 @@ Dockerfile ported by Adafruit from the work of [@jcmvbkbc](https://gist.github.c
 
 ## Build
 
-Please follow the next steps. 
+Please follow the next steps:
 
 1. Build the docker image:
 
@@ -13,7 +13,7 @@ Please follow the next steps.
 docker build -t esp32-s3_linux .
 ```
 
-This step takes around ~35 minutes and needs ~20Gb
+This step takes around ~35 minutes and needs ~20Gb:
 
 ![ESP32S3 Linux image build](screenshots/docker_build.jpg)
 
@@ -37,6 +37,8 @@ docker stop esp32s3build
 
 5. Upload
 
+You must have two tools installed in your system, [ESPTool](https://docs.espressif.com/projects/esptool/en/latest/esp32/installation.html) and [Espressif IDF](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/#installation). After that please upload the binaries using:
+
 ```bash
 python esptool.py --chip esp32s3 -p YOUR-PORT-HERE -b 921600 --before=default_reset --after=hard_reset write_flash 0x0 bootloader.bin 0x10000 network_adapter.bin 0x8000 partition-table.bin
 ```
@@ -52,6 +54,8 @@ parttool.py write_partition --partition-name rootfs --input rootfs.cramfs
 Alternative following this [Adafruit guide](https://learn.adafruit.com/docker-esp32-s3-linux/docker-esp32-s3-linux-image).
 
 # Linux boot
+
+For run in a TTGO T7 S3 (LilyGO board), you should have a FTDI connection to the UART like is showed in the photo:
 
 ![ESP32 S3 TTGO T7](https://user-images.githubusercontent.com/423856/249864617-08cf71ac-8773-4c3b-b5a3-d8912b5b9c05.jpg)  
 
