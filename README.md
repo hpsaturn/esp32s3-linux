@@ -1,5 +1,5 @@
 
-# ESP32 S3 Linux - Docker builder 
+# ESP32 S3 Linux - Docker builder
 
 Dockerfile ported by Adafruit from the work of [@jcmvbkbc](https://gist.github.com/jcmvbkbc/316e6da728021c8ff670a24e674a35e6)
 
@@ -61,3 +61,13 @@ For run in a TTGO T7 S3 (LilyGO board), you should have a FTDI connection to the
 
 <video src="https://user-images.githubusercontent.com/423856/249861308-74ca4fc8-d0ab-4cc3-9166-cf66c65c70d8.mp4" controls="controls" style="max-width: 730px;">
 </video>
+
+# TODO
+
+- [ ] Freezing repositories to specific commit
+- [ ] Migrate to the last script version with build parameters
+- [ ] Add provisioning stuff
+
+# Credits
+
+Main script and initial idea: [@jcmvbkbc](https://gist.github.com/jcmvbkbc/316e6da728021c8ff670a24e674a35e6)
