@@ -35,7 +35,7 @@ docker cp esp32s3build:/app/build/release/ bin_files
 docker stop esp32s3build 
 ```
 
-5. Upload
+# Upload
 
 You must have two tools installed in your system, [ESPTool](https://docs.espressif.com/projects/esptool/en/latest/esp32/installation.html) and [Espressif IDF](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/#installation). After that please upload the binaries using:
 
@@ -51,6 +51,12 @@ parttool.py write_partition --partition-name linux --input xipImage
 parttool.py write_partition --partition-name rootfs --input rootfs.cramfs
 ```
 
+And the etc partition:¨ (skip it if you preserver your settings)
+
+```bash
+parttool.py write_partition --partition-name etc --input build-buildroot-esp32s3/images/etc.jffs2
+``` 
+
 Alternative following this [Adafruit guide](https://learn.adafruit.com/docker-esp32-s3-linux/docker-esp32-s3-linux-image).
 
 # Linux boot
@@ -62,10 +68,40 @@ For run in a TTGO T7 S3 (LilyGO board), you should have a FTDI connection to the
 <video src="https://user-images.githubusercontent.com/423856/249861308-74ca4fc8-d0ab-4cc3-9166-cf66c65c70d8.mp4" controls="controls" style="max-width: 730px;">
 </video>
 
+# WiFi settings
+
+Only add your credentials on `/etc/wpa_supplicant.conf` using `vi` editor or from the command line, like this:
+
+```bash
+cat > /etc/wpa_supplicant.conf <<EOF
+network={
+        ssid="YOUR-SSID-HERE"
+        psk="YOUR-SSID-PASSWORD-HERE"
+}
+EOF
+```
+
+then, reboot it and your able to connect to it via SSH.
+
+# Misc
+
+**Turning USB serial into the default console:**
+
+```bash
+echo -n 'earlycon=esp32s3acm,mmio32,0x60038000 console=ttyACM1 debug rw root=mtd:rootfs no_hash_pointers' > /etc/cmdline
+```
+
+**Using GPIOs:**
+
+```bash
+devmem 0x60004020 32 2 # (output enable for gpio1)
+devmem 0x60004004 32 2 # (drive gpio1 high)
+```
+
 # TODO
 
-- [ ] Freezing repositories to specific commit
 - [ ] Migrate to the last script version with build parameters
+- [ ] Freezing repositories to specific commit
 - [ ] Add provisioning stuff
 
 # Credits
