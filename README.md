@@ -85,18 +85,31 @@ then, reboot it and your able to connect to it via SSH.
 
 # Misc
 
-**Turning USB serial into the default console:**
+### Turning USB serial into the default console:
 
 ```bash
 echo -n 'earlycon=esp32s3acm,mmio32,0x60038000 console=ttyACM1 debug rw root=mtd:rootfs no_hash_pointers' > /etc/cmdline
 ```
 
-**Using GPIOs:**
+### Provisional GPIO handling:
 
 ```bash
 devmem 0x60004020 32 2 # (output enable for gpio1)
 devmem 0x60004004 32 2 # (drive gpio1 high)
 ```
+
+For other GPIO be carefoul the syntax and the addressing, for instance for the LilyGO TTGO T7S3 board and its LED, the GPIO is the IO17, then you should be pass the number in hexadecimal, like this:
+
+```bash
+devmem 0x60004020 32 0x20000 # (ouput enable for GPIO 17)
+devmem 0x60004004 32 0x20000 # (set GPIO 17 high)
+```
+
+Also you can enable the LED on the startup in a simple `inet.d` service:
+
+![GPIO working via devmem](screenshots/gpio_via_devmem.jpg)
+
+More info on the [technical document](https://www.espressif.com/sites/default/files/documentation/esp32-s3_technical_reference_manual_en.pdf) of the ESP32S3.
 
 # TODO
 
