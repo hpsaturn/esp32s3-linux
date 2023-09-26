@@ -55,7 +55,7 @@ And the etc partition:¨ (skip it if you preserver your settings)
 
 ```bash
 parttool.py write_partition --partition-name etc --input build-buildroot-esp32s3/images/etc.jffs2
-``` 
+```
 
 Alternative following this [Adafruit guide](https://learn.adafruit.com/docker-esp32-s3-linux/docker-esp32-s3-linux-image).
 
@@ -98,7 +98,7 @@ devmem 0x60004020 32 2 # (output enable for gpio1)
 devmem 0x60004004 32 2 # (drive gpio1 high)
 ```
 
-For other GPIO be carefoul the syntax and the addressing, for instance for the LilyGO TTGO T7S3 board and its LED, the GPIO is the IO17, then you should be pass the number in hexadecimal, like this:
+For other GPIO be careful the syntax and the addressing, for instance for the LilyGO TTGO T7S3 board and its LED, the GPIO is the IO17, then you should be pass the number in hexadecimal, like this:
 
 ```bash
 devmem 0x60004020 32 0x20000 # (ouput enable for GPIO 17)
@@ -109,7 +109,17 @@ Also you can enable the LED on the startup in a simple `inet.d` service:
 
 ![GPIO working via devmem](screenshots/gpio_via_devmem.jpg)
 
-More info on the [technical document](https://www.espressif.com/sites/default/files/documentation/esp32-s3_technical_reference_manual_en.pdf) of the ESP32S3.
+More info in the [technical document](https://www.espressif.com/sites/default/files/documentation/esp32-s3_technical_reference_manual_en.pdf) of the ESP32S3.
+
+# Development and Contributions
+
+Maybe the best way to development is not using this guide, because is more easy modify the files and make code contributions from your local machine. For this reason you should have running the [official script](https://github.com/jcmvbkbc/esp32-linux-build) in your machine.
+
+Also with this script you could have faster updates because it supports some skip parameters like this:
+
+```bash
+keep_toolchain=y keep_rootfs=y keep_buildroot=y keep_bootloader=y keep_etc=y ./rebuild-esp32s3-linux.sh
+```
 
 # TODO
 
