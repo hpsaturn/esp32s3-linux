@@ -7,9 +7,10 @@ Dockerfile ported by Adafruit from the work of [@jcmvbkbc](https://gist.github.c
 
 Please follow the next steps:
 
-1. Build the docker image:
+1. Download or clone this repo, and then build the docker image:
 
 ```bash
+clone https://github.com/hpsaturn/esp32s3-linux.git && cd esp32s3-linux
 docker build -t esp32-s3_linux .
 ```
 
