@@ -51,7 +51,7 @@ put `y` to enable some one like this:
 docker run --rm -it --name esp32s3linux --user="$(id -u):$(id -g)" -v ./esp32-linux-build:/app --env-file settings.cfg --device-cgroup-rule='c 166:* rmw' --device=/dev/ttyACM0 esp32linuxbase ./rebuild-esp32s3-linux-wifi.sh
 ```
 
-Keep in mind that you should change the --device to your USB device where is connected the ESP32S3.For a different script please check the directory `esp32-linux-build`.This step takes around ~35 minutes and needs ~20Gb.
+Keep in mind that you should change the **--device** to your USB device where is connected the ESP32S3. For a different script please check the directory `esp32-linux-build`.This step takes around ~35 minutes and needs ~20Gb.
 
 After that you should have this message:
 
