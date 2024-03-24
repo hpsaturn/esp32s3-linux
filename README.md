@@ -7,58 +7,73 @@ Dockerfile ported by Adafruit from the work of [@jcmvbkbc](https://gist.github.c
 
 Please follow the next steps:
 
-1. Download or clone this repo, and then build the docker image:
+1. Download or clone this repo
 
 ```bash
-git clone https://github.com/hpsaturn/esp32s3-linux.git && cd esp32s3-linux
-docker build -t esp32-s3_linux .
+git clone --recursive https://github.com/hpsaturn/esp32s3-linux.git && cd esp32s3-linux
 ```
 
-This step takes around ~35 minutes and needs ~20Gb:
+2. Then build the docker image:
+
+```bash
+docker build --build-arg DOCKER_USER=$USER --build-arg DOCKER_USERID=$UID -t esp32linuxbase .
+```
+
+3. Copy settings sample and configure it:
+
+```bash
+cp settings.cfg.default settings.cfg
+```
+
+Possible settings:
+
+```bash
+keep_toolchain=
+keep_rootfs=
+keep_buildroot=
+keep_bootloader=
+keep_etc=
+``` 
+
+put `y` to enable some one like yes:
+
+```bash
+# keep_toolchain=y	-- don't rebuild the toolchain, but rebuild everything else
+# keep_rootfs=y		-- don't reconfigure or rebuild rootfs from scratch. Would still apply overlay changes
+# keep_buildroot=y	-- don't redownload the buildroot, only git pull any updates into it
+# keep_bootloader=y	-- don't redownload the bootloader, only rebuild it
+# keep_etc=y		-- don't overwrite the /etc partition
+``` 
+
+4. Run the build script of your preference, for example:
+
+```bash
+docker run --rm -it --name esp32s3linux --user="$(id -u):$(id -g)" -v ./esp32-linux-build:/app --env-file settings.cfg --device-cgroup-rule='c 166:* rmw' --device=/dev/ttyACM0 esp32linuxbase ./rebuild-esp32s3-linux-wifi.sh
+```
+
+Keep in mind that you should change the --device to your USB device where is connected the ESP32S3.For a different script please check the directory `esp32-linux-build`.This step takes around ~35 minutes and needs ~20Gb:
 
 ![ESP32S3 Linux image build](screenshots/docker_build.jpg)
 
-2. Run a container in a terminal
+After that you should have this message:
+
+![ESP32S3 Linux finish build](screenshots/docker_build_before_flash.jpg)
+
+5. Open a different terminal and enter to the running container: 
 
 ```bash
-docker run --name esp32s3build -it esp32-s3_linux
+docker exec -it -u root esp32s3linux bash
 ```
 
-3. In a second termintal, copy the binaries
+and change the docker USB device permissions:
 
 ```bash
-docker cp esp32s3build:/app/build/release/ bin_files
+chmod 666 /dev/ttyACM0 
 ```
 
-4. Stop the container
+6. Return to the main terminal and perform the flashing. And that's it!
 
-```bash
-docker stop esp32s3build 
-```
-
-# Upload
-
-You must have two tools installed in your system, [ESPTool](https://docs.espressif.com/projects/esptool/en/latest/esp32/installation.html) and [Espressif IDF](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/#installation). After that please upload the binaries using:
-
-```bash
-python esptool.py --chip esp32s3 -p YOUR-PORT-HERE -b 921600 --before=default_reset --after=hard_reset write_flash 0x0 bootloader.bin 0x10000 network_adapter.bin 0x8000 partition-table.bin
-```
-
-```bash
-parttool.py write_partition --partition-name linux --input xipImage
-```
-
-```bash
-parttool.py write_partition --partition-name rootfs --input rootfs.cramfs
-```
-
-And the etc partition:¨ (skip it if you preserver your settings)
-
-```bash
-parttool.py write_partition --partition-name etc --input build-buildroot-esp32s3/images/etc.jffs2
-```
-
-Alternative following this [Adafruit guide](https://learn.adafruit.com/docker-esp32-s3-linux/docker-esp32-s3-linux-image).
+![ESP32S3 Linux final flashing](screenshots/docker_flashing.jpg)
 
 # Linux boot
 
@@ -124,9 +139,9 @@ keep_toolchain=y keep_rootfs=y keep_buildroot=y keep_bootloader=y keep_etc=y ./r
 
 # TODO
 
-- [ ] Migrate to the last script version with build parameters
-- [ ] Freezing repositories to specific commit
-- [ ] Add provisioning stuff
+- [x] Migrate to the last script version with build parameters
+- [x] Freezing repositories to specific commit
+- [x] Add provisioning stuff (etc partition)
 
 # Credits
 
