@@ -3,6 +3,14 @@
 
 The initial version was a Dockerfile ported by Adafruit from the work of [@jcmvbkbc](https://gist.github.com/jcmvbkbc/316e6da728021c8ff670a24e674a35e6). The current version using the last version of the build scripts like a git submodule and has some improvements on the DockerFile to support USB flashing.
 
+<table>
+	<tr>
+		<td>
+			Don't forget to star ⭐ this repository
+		</td>
+	</tr>
+</table>
+
 ## Build
 
 Please follow the next steps:
@@ -51,7 +59,7 @@ put `y` to enable some one like this:
 docker run --rm -it --name esp32s3linux --user="$(id -u):$(id -g)" -v ./esp32-linux-build:/app --env-file settings.cfg --device-cgroup-rule='c 166:* rmw' --device=/dev/ttyACM0 esp32linuxbase ./rebuild-esp32s3-linux-wifi.sh
 ```
 
-Keep in mind that you should change the **--device** to your USB device where is connected the ESP32S3. For a different script please check the directory `esp32-linux-build`.This step takes around ~35 minutes and needs ~20Gb.
+Keep in mind that you should change the **--device** to your USB device where is connected the ESP32S3. For a different script please check the directory `esp32-linux-build`. This step takes around ~35 minutes and needs ~20Gb.
 
 After that you should have this message:
 
