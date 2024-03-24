@@ -57,7 +57,7 @@ Keep in mind that you should change the --device to your USB device where is con
 
 After that you should have this message:
 
-![ESP32S3 Linux image build](screenshots/docker_build_before_flash.jpg)
+![ESP32S3 Linux finish build](screenshots/docker_build_before_flash.jpg)
 
 5. Open a different terminal and enter to the running container: 
 
@@ -73,6 +73,7 @@ chmod 666 /dev/ttyACM0
 
 6. Return to the main terminal and perform the flashing. And that's it!
 
+![ESP32S3 Linux final flashing](screenshots/docker_flashing.jpg)
 
 # Linux boot
 
