@@ -152,7 +152,7 @@ More info in the [technical document](https://www.espressif.com/sites/default/fi
 - [x] Migrate to the last script version with build parameters
 - [x] Freezing repositories to specific commit
 - [x] Add provisioning stuff (etc partition)
-- [ ] Improve the flashing step. Fix issue #7
+- [ ] Improve the flashing step. Fix issue #10
 
 # Credits
 

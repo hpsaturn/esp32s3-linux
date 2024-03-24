@@ -6,7 +6,7 @@ RUN apt-get -y install gperf bison flex texinfo help2man gawk libtool-bin git un
 
 WORKDIR /app
 
-# install autoconf 2.71
+# install autoconf 2.71:
 RUN wget https://ftp.gnu.org/gnu/autoconf/autoconf-2.71.tar.xz && \
     tar -xf autoconf-2.71.tar.xz && \
     cd autoconf-2.71 && \
@@ -14,17 +14,17 @@ RUN wget https://ftp.gnu.org/gnu/autoconf/autoconf-2.71.tar.xz && \
     make && \
     make install
 ENV PATH="$PATH:/app/autoconf-2.71/root/bin"
-
 RUN rm -rf autoconf-2.71*
 
-#COPY esp32-linux-build/* /app/
-RUN chmod a+rwx /app
-
+# user config:
 ARG DOCKER_USER=default_user
 ARG DOCKER_USERID=default_userid
-# ct-ng cannot run as root, we'll just do everything else as a user
-RUN useradd -d /app/build -u $DOCKER_USERID $DOCKER_USER && mkdir build && chown $DOCKER_USER:$DOCKER_USER build
-RUN usermod -a -G dialout $DOCKER_USER
+# Cannot run as root, we'll just do everything else as a user
+# The dialup group maybe doesn't work in Docker. Please help. Issue #10 
+RUN chmod a+rwx /app && \ 
+    useradd -d /app/build -u $DOCKER_USERID $DOCKER_USER && \
+    mkdir build && \
+    chown $DOCKER_USER:$DOCKER_USER build && \
+    usermod -a -G dialout $DOCKER_USER
 
 USER $DOCKER_USER
-
