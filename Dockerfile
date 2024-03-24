@@ -1,7 +1,3 @@
-# Dockerfile port of https://gist.github.com/jcmvbkbc/316e6da728021c8ff670a24e674a35e6
-# wifi details http://wiki.osll.ru/doku.php/etc:users:jcmvbkbc:linux-xtensa:esp32s3wifi
-
-# we need python 3.10 not 3.11
 FROM ubuntu:22.04
 
 RUN apt-get update
@@ -30,9 +26,3 @@ RUN usermod -a -G dialout $DOCKER_USER
 
 USER $DOCKER_USER
 
-# final files: /app/build/release/
-# now you can burn the files from the 'release' folder with: 
-# python esptool.py --chip esp32s3 -p /dev/ttyUSB0 -b 921600 --before=default_reset --after=hard_reset write_flash 0x0 bootloader.bin 0x10000 network_adapter.bin 0x8000 partition-table.bin
-# next we can burn in the kernel and filesys with parttool, which is part of esp-idf
-# parttool.py write_partition --partition-name linux --input xipImage
-# parttool.py write_partition --partition-name rootfs --input rootfs.cramfs
