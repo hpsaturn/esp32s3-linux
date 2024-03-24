@@ -1,7 +1,7 @@
 
 # ESP32 S3 Linux - Docker builder
 
-The initial version was a Dockerfile ported by Adafruit from the work of [@jcmvbkbc](https://gist.github.com/jcmvbkbc/316e6da728021c8ff670a24e674a35e6). The current version using the last version of the build scripts like a git submodule and has some improvements on the DockerFile to support USB flashing.
+The initial version was a Dockerfile ported by Adafruit from the work of [@jcmvbkbc](https://gist.github.com/jcmvbkbc/316e6da728021c8ff670a24e674a35e6). The current version uses the last version of the build scripts like a git submodule and it has some improvements on the DockerFile to support USB flashing.
 
 <table>
 	<tr>
@@ -65,7 +65,9 @@ After that you should have this message:
 
 ![ESP32S3 Linux finish build](screenshots/docker_build_before_flash.jpg)
 
-5. Open a different terminal and enter to the running container: 
+## Flashing
+
+1. Open a different terminal and enter to the running container:
 
 ```bash
 docker exec -it -u root esp32s3linux bash
@@ -77,22 +79,21 @@ and change the docker USB device permissions:
 chmod 666 /dev/ttyACM0 
 ```
 
-6. Return to the main terminal and perform the flashing. And that's it!
+2. Return to the main terminal and perform the flashing. And that's it!
 
 ![ESP32S3 Linux final flashing](screenshots/docker_flashing.jpg)
 
 ---
 
-## Updates
+# Updates
 
-Before the first build and flashing, you can keep the sources and working directories changing the `settings.cfg` file. Also don't forget update the git submodules like this:
+After the first build and flashing, you can keep the sources and working directories changing the `settings.cfg` file and repeating the steps from the step 4. Also don't forget update before, the git submodules like this:
 
 ```bash
 git submodule update --init --recursive
 ```
 
-
-
+For clean the working directories, please enter to `esp32-linux-build` and remove the build directory.
 
 # Linux boot
 

@@ -15,6 +15,8 @@ RUN wget https://ftp.gnu.org/gnu/autoconf/autoconf-2.71.tar.xz && \
     make install
 ENV PATH="$PATH:/app/autoconf-2.71/root/bin"
 
+RUN rm -rf autoconf-2.71*
+
 #COPY esp32-linux-build/* /app/
 RUN chmod a+rwx /app
 
