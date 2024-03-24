@@ -1,0 +1,5 @@
+keep_toolchain=
+keep_rootfs=
+keep_buildroot=
+keep_bootloader=
+keep_etc=
