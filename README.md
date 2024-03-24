@@ -85,7 +85,7 @@ chmod 666 /dev/ttyACM0
 
 ---
 
-# Updates
+## Updates
 
 After the first build and flashing, you can keep the sources and working directories changing the `settings.cfg` file and repeating the steps from the step 4. Also don't forget update before, the git submodules like this:
 
@@ -147,21 +147,12 @@ Also you can enable the LED on the startup in a simple `inet.d` service:
 
 More info in the [technical document](https://www.espressif.com/sites/default/files/documentation/esp32-s3_technical_reference_manual_en.pdf) of the ESP32S3.
 
-# Development and Contributions
-
-Maybe the best way to development is not using this guide, because is more easy modify the files and make code contributions from your local machine. For this reason you should have running the [official script](https://github.com/jcmvbkbc/esp32-linux-build) in your machine.
-
-Also with this script you could have faster updates because it supports some skip parameters like this:
-
-```bash
-keep_toolchain=y keep_rootfs=y keep_buildroot=y keep_bootloader=y keep_etc=y ./rebuild-esp32s3-linux.sh
-```
-
 # TODO
 
 - [x] Migrate to the last script version with build parameters
 - [x] Freezing repositories to specific commit
 - [x] Add provisioning stuff (etc partition)
+- [ ] Improve the flashing step. Fix issue #7
 
 # Credits
 
