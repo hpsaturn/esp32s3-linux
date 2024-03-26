@@ -12,9 +12,9 @@ RUN wget https://ftp.gnu.org/gnu/autoconf/autoconf-2.71.tar.xz && \
     cd autoconf-2.71 && \
     ./configure --prefix=`pwd`/root && \
     make && \
-    make install
+    make install && \
+    cd .. && rm autoconf-2.71.tar.xz
 ENV PATH="$PATH:/app/autoconf-2.71/root/bin"
-RUN rm -rf autoconf-2.71*
 
 # user config:
 ARG DOCKER_USER=default_user

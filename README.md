@@ -97,14 +97,14 @@ For clean the working directories, please enter to `esp32-linux-build` and remov
 
 # Linux boot
 
-For run in a TTGO T7 S3 (LilyGO board), you should have a FTDI connection to the UART like is showed in the photo:
+For run it in a TTGO T7 S3 (LilyGO board), you should have a FTDI connection to the UART like is showed in the photo:
 
 ![ESP32 S3 TTGO T7](https://user-images.githubusercontent.com/423856/249864617-08cf71ac-8773-4c3b-b5a3-d8912b5b9c05.jpg)  
 
 <video src="https://user-images.githubusercontent.com/423856/249861308-74ca4fc8-d0ab-4cc3-9166-cf66c65c70d8.mp4" controls="controls" style="max-width: 730px;">
 </video>
 
-# WiFi settings
+## WiFi settings
 
 Only add your credentials on `/etc/wpa_supplicant.conf` using `vi` editor or from the command line, like this:
 
@@ -119,7 +119,7 @@ EOF
 
 then, reboot it and your able to connect to it via SSH.
 
-# Misc
+## Misc
 
 ### Turning USB serial into the default console:
 
