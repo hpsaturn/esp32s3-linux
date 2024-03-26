@@ -41,7 +41,9 @@ keep_rootfs=
 keep_buildroot=
 keep_bootloader=
 keep_etc=
-``` 
+```
+
+(**Note**: For the first build and install, leave the same settings than the default, without parameters)
 
 put `y` to enable some one like this:
 
