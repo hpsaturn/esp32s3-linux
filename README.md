@@ -1,7 +1,7 @@
 
 # ESP32 S3 Linux - Docker builder
 
-The initial version was a Dockerfile ported by Adafruit from the work of [@jcmvbkbc](https://gist.github.com/jcmvbkbc/316e6da728021c8ff670a24e674a35e6). The current version uses the last version of the build scripts like a git submodule and it has some improvements on the DockerFile to support USB flashing.
+The initial version was a Dockerfile ported by Adafruit from the work of [@jcmvbkbc](http://wiki.osll.ru/doku.php/etc:users:jcmvbkbc:linux-xtensa:esp32s3). The current version uses the last version of the build scripts like a git submodule and it has some improvements on the DockerFile to support USB flashing.
 
 <table>
 	<tr>
@@ -104,6 +104,8 @@ For run it in a TTGO T7 S3 (LilyGO board), you should have a FTDI connection to 
 <video src="https://user-images.githubusercontent.com/423856/249861308-74ca4fc8-d0ab-4cc3-9166-cf66c65c70d8.mp4" controls="controls" style="max-width: 730px;">
 </video>
 
+For the complete details of features and current restrictions, please review the official [wiki](http://wiki.osll.ru/doku.php/etc:users:jcmvbkbc:linux-xtensa:esp32s3).
+
 ## WiFi settings
 
 Only add your credentials on `/etc/wpa_supplicant.conf` using `vi` editor or from the command line, like this:
@@ -145,6 +147,7 @@ Also you can enable the LED on the startup in a simple `inet.d` service:
 
 ![GPIO working via devmem](screenshots/gpio_via_devmem.jpg)
 
+Complete guide of GPIO implementation [here](http://wiki.osll.ru/doku.php/etc:users:jcmvbkbc:linux-xtensa:esp32s3:gpio)  
 More info in the [technical document](https://www.espressif.com/sites/default/files/documentation/esp32-s3_technical_reference_manual_en.pdf) of the ESP32S3.
 
 # TODO
@@ -156,4 +159,6 @@ More info in the [technical document](https://www.espressif.com/sites/default/fi
 
 # Credits
 
-Main script and initial idea: [@jcmvbkbc](https://gist.github.com/jcmvbkbc/316e6da728021c8ff670a24e674a35e6)
+Main script and initial idea: [@jcmvbkbc](https://gist.github.com/jcmvbkbc/316e6da728021c8ff670a24e674a35e6)  
+[Official Wiki](http://wiki.osll.ru/doku.php/etc:users:jcmvbkbc:linux-xtensa:esp32s3)  
+English/Spanish [ESP32 Telegram group](https://t.me/esp_es)
