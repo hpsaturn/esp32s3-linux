@@ -56,7 +56,7 @@ put `y` to enable some one like this:
 4. Run the build script of your preference, for example:
 
 ```bash
-docker run --rm -it --name esp32s3linux --user="$(id -u):$(id -g)" -v ./esp32-linux-build:/app --env-file settings.cfg --device-cgroup-rule='c 166:* rmw' --device=/dev/ttyACM0 esp32linuxbase ./rebuild-esp32s3-linux-wifi.sh
+docker run --rm -it --name esp32s3linux --user="$(id -u):$(id -g)" -v ./esp32-linux-build:/app --env-file settings.cfg --device=/dev/ttyACM0 esp32linuxbase ./rebuild-esp32s3-linux-wifi.sh
 ```
 
 Keep in mind that you should change the **--device** to your USB device where is connected the ESP32S3. For a different script please check the directory `esp32-linux-build`. This step takes around ~35 minutes and needs ~20Gb.
@@ -73,13 +73,13 @@ After that you should have this message:
 docker exec -it -u root esp32s3linux bash
 ```
 
-and change the docker USB device permissions:
+2. Change the docker USB device permissions:
 
 ```bash
 chmod 666 /dev/ttyACM0 
 ```
 
-2. Return to the main terminal and perform the flashing. And that's it!
+3. Return to the main terminal and perform the flashing. And that's it!
 
 ![ESP32S3 Linux final flashing](screenshots/docker_flashing.jpg)
 
