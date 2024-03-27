@@ -53,7 +53,7 @@ put `y` to enable some one like this:
 # keep_buildroot=y	-- don't redownload the buildroot, only git pull any updates into it
 # keep_bootloader=y	-- don't redownload the bootloader, only rebuild it
 # keep_etc=y		-- don't overwrite the /etc partition
-``` 
+```
 
 4. Run the build script of your preference, for example:
 
@@ -81,7 +81,9 @@ docker exec -it -u root esp32s3linux bash
 chmod 666 /dev/ttyACM0 
 ```
 
-3. Return to the main terminal and perform the flashing. And that's it!
+3. Return to the main terminal and perform the flashing. **And that's it!**
+
+Please check the output, you should have something like this, with the flashed of /etc partition (only that in the first install):
 
 ![ESP32S3 Linux final flashing](screenshots/docker_flashing.jpg)
 
