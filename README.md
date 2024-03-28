@@ -27,33 +27,13 @@ git clone --recursive https://github.com/hpsaturn/esp32s3-linux.git && cd esp32s
 docker build --build-arg DOCKER_USER=$USER --build-arg DOCKER_USERID=$UID -t esp32linuxbase .
 ```
 
-3. Copy settings sample and configure it:
+3. Copy settings sample:
 
 ```bash
 cp settings.cfg.default settings.cfg
 ```
 
-Possible settings:
-
-```bash
-keep_toolchain=
-keep_rootfs=
-keep_buildroot=
-keep_bootloader=
-keep_etc=
-```
-
 (**Note**: For the first build and install, leave the same settings than the default, without parameters)
-
-put `y` to enable some one like this:
-
-```bash
-# keep_toolchain=y	-- don't rebuild the toolchain, but rebuild everything else
-# keep_rootfs=y		-- don't reconfigure or rebuild rootfs from scratch. Would still apply overlay changes
-# keep_buildroot=y	-- don't redownload the buildroot, only git pull any updates into it
-# keep_bootloader=y	-- don't redownload the bootloader, only rebuild it
-# keep_etc=y		-- don't overwrite the /etc partition
-```
 
 4. Run the build script of your preference, for example:
 
@@ -83,25 +63,19 @@ chmod 666 /dev/ttyACM0
 
 3. Return to the main terminal and perform the flashing. **And that's it!**
 
-Please check the output, you should have something like this, with the flashed of /etc partition (only that in the first install):
-
 ![ESP32S3 Linux final flashing](screenshots/docker_flashing.jpg)
+
+Please check the output, you should have the flashed of **/etc** partition at the end (only that in the first install), with a final message like this:
+
+```bash
+Written contents of file 'build-buildroot-esp32s3/images/etc.jffs2' at offset 0xb0000
+```
 
 ---
 
-## Updates
-
-After the first build and flashing, you can keep the sources and working directories changing the `settings.cfg` file and repeating the steps from the step 4. Also don't forget update before, the git submodules like this:
-
-```bash
-git submodule update --init --recursive
-```
-
-For clean the working directories, please enter to `esp32-linux-build` and remove the build directory.
-
 # Linux boot
 
-For run it in a TTGO T7 S3 (LilyGO board), you should have a FTDI connection to the UART like is showed in the photo:
+For run it in a TTGO T7 S3 (LilyGO board), you should have a FTDI connection to the UART like is showed in the photos:
 
 ![ESP32 S3 TTGO T7](https://user-images.githubusercontent.com/423856/249864617-08cf71ac-8773-4c3b-b5a3-d8912b5b9c05.jpg)  
 
@@ -127,13 +101,13 @@ then, reboot it and your able to connect to it via SSH.
 
 ## Misc
 
-### Turning USB serial into the default console:
+### Turning USB serial into the default console
 
 ```bash
 echo -n 'earlycon=esp32s3acm,mmio32,0x60038000 console=ttyACM1 debug rw root=mtd:rootfs no_hash_pointers' > /etc/cmdline
 ```
 
-### Provisional GPIO handling:
+### Provisional GPIO handling
 
 ```bash
 devmem 0x60004020 32 2 # (output enable for gpio1)
@@ -153,6 +127,40 @@ Also you can enable the LED on the startup in a simple `inet.d` service:
 
 Complete guide of GPIO implementation [here](http://wiki.osll.ru/doku.php/etc:users:jcmvbkbc:linux-xtensa:esp32s3:gpio)  
 More info in the [technical document](https://www.espressif.com/sites/default/files/documentation/esp32-s3_technical_reference_manual_en.pdf) of the ESP32S3.
+
+# Updates
+
+After the first build and flashing, you can keep the sources and working directories changing the `settings.cfg` file and repeating the steps from the step 4. Also don't forget update before, the git submodules like this:
+
+```bash
+git submodule update --init --recursive
+```
+
+## Possible settings
+
+Put `y` to enable some one or nothing to disable, like this:
+
+```bash
+# keep_toolchain=y	-- don't rebuild the toolchain, but rebuild everything else
+# keep_rootfs=y		-- don't reconfigure or rebuild rootfs from scratch. Would still apply overlay changes
+# keep_buildroot=y	-- don't redownload the buildroot, only git pull any updates into it
+# keep_bootloader=y	-- don't redownload the bootloader, only rebuild it
+# keep_etc=y		-- don't overwrite the /etc partition
+```
+
+For fast re-builds, fast updates and also keep your **etc** and its config files, for instance configure it like this:
+
+```bash
+keep_toolchain=y
+keep_rootfs=y
+keep_buildroot=y
+keep_bootloader=y
+keep_etc=
+```
+
+## Clean
+
+For clean the working directories, please enter to `esp32-linux-build` and remove the build directory and rebuild with the settings with empty parameters.
 
 # TODO
 
