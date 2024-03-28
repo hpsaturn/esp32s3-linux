@@ -75,7 +75,7 @@ Written contents of file 'build-buildroot-esp32s3/images/etc.jffs2' at offset 0x
 
 # Linux boot
 
-For run it in a TTGO T7 S3 (LilyGO board), you should have a FTDI connection to the UART like is showed in the photos:
+For run it in a TTGO T7 S3 (LilyGO board), you should have a FTDI connection to the UART like is showed in the photos below. Some dev boards have a second USB-C for this, then you could omit that.
 
 ![ESP32 S3 TTGO T7](https://user-images.githubusercontent.com/423856/249864617-08cf71ac-8773-4c3b-b5a3-d8912b5b9c05.jpg)  
 
@@ -155,7 +155,7 @@ keep_toolchain=y
 keep_rootfs=y
 keep_buildroot=y
 keep_bootloader=y
-keep_etc=
+keep_etc=y
 ```
 
 ## Clean
