@@ -49,6 +49,22 @@ After that you should have this message:
 
 ## Flashing
 
+Perform the enter keys for upload the different partitions **And that's it!**
+
+![ESP32S3 Linux final flashing](screenshots/docker_flashing.jpg)
+
+Please check the output, you should have the flashed of **/etc** partition at the end (only that in the first install), with a final message like this:
+
+```bash
+Written contents of file 'build-buildroot-esp32s3/images/etc.jffs2' at offset 0xb0000
+```
+
+---
+
+### Troubleshotting
+
+If you have problems after step 4, with permission on the serial device, please repeat this step and before to give enter key:
+
 1. Open a different terminal and enter to the running container:
 
 ```bash
@@ -61,17 +77,7 @@ docker exec -it -u root esp32s3linux bash
 chmod 666 /dev/ttyACM0 
 ```
 
-3. Return to the main terminal and perform the flashing. **And that's it!**
-
-![ESP32S3 Linux final flashing](screenshots/docker_flashing.jpg)
-
-Please check the output, you should have the flashed of **/etc** partition at the end (only that in the first install), with a final message like this:
-
-```bash
-Written contents of file 'build-buildroot-esp32s3/images/etc.jffs2' at offset 0xb0000
-```
-
----
+3. Return to the main terminal and perform the flashing. 
 
 # Linux boot
 
