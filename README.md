@@ -173,10 +173,11 @@ For clean the working directories, please enter to `esp32-linux-build` and remov
 - [x] Migrate to the last script version with build parameters
 - [x] Freezing repositories to specific commit
 - [x] Add provisioning stuff (etc partition)
-- [ ] Improve the flashing step. Fix issue #10
+- [x] Improve the flashing step. Fix issue #10
 
 # Credits
 
 Main script and initial idea: [@jcmvbkbc](https://gist.github.com/jcmvbkbc/316e6da728021c8ff670a24e674a35e6)  
 [Official Wiki](http://wiki.osll.ru/doku.php/etc:users:jcmvbkbc:linux-xtensa:esp32s3)  
-English/Spanish [ESP32 Telegram group](https://t.me/esp_es)
+[Build process explained](https://gojimmypi.github.io/ESP32-S3-Linux/)  
+English/Spanish [ESP32 Telegram group](https://t.me/esp_es)  
